@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import ListTasks from './components/ListTasks';
+import NewTask from './components/NewTask';
+import { TaskProps } from './constants';
 
 function App() {
+  const [listToDo, setListToDo] = useState<TaskProps[]>([]);
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem('list') || '')?.length) {
+      setListToDo(JSON.parse(localStorage.getItem('list') || ''));
+    }
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <div className='wrapper new-task'>
+        <NewTask create setListToDo={setListToDo} listToDo={listToDo} />
+      </div>
+      <ListTasks listToDo={listToDo} setListToDo={setListToDo} />
     </div>
   );
 }
