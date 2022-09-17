@@ -7,7 +7,7 @@ import { TaskProps } from './constants';
 function App() {
   const [listToDo, setListToDo] = useState<TaskProps[]>([]);
   useEffect(() => {
-    if (JSON.parse(localStorage.getItem('list') || '')?.length) {
+    if (localStorage.getItem('list')) {
       setListToDo(JSON.parse(localStorage.getItem('list') || ''));
     }
   }, []);

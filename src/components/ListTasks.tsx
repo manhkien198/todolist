@@ -10,7 +10,6 @@ export interface ListTasksProps {
 export default function ListTasks({ listToDo, setListToDo }: ListTasksProps) {
   const [filteredTask, setFilteredTask] = useState<TaskProps[]>([]);
   const [listCheck, setListCheck] = useState<string[]>([]);
-  console.log('listCheck :', listCheck);
   useEffect(() => {
     setFilteredTask([...listToDo]);
   }, [listToDo]);
